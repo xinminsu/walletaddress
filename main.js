@@ -28,7 +28,7 @@ function addRowContent(ws, ref, line, address, privatekey) {
 addHead(worksheet,"A1");
 
 function createAccounts(){
-    for(var i=0; i < 3000; i++) {
+    for(var i=0; i < 100000; i++) {
         var wallet = web3.eth.accounts.create();
 /*        console.log("address:" + wallet.address);
         console.log("privateKey:" + wallet.privateKey);*/

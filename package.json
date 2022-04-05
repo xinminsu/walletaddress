@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ethereumjs-tx": "^2.1.2",
     "exceljs": "^4.3.0",
     "web3": "^1.7.1",
     "xlsx": "^0.18.5"
