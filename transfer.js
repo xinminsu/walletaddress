@@ -12,14 +12,14 @@ For an explanation of this code, navigate to the wiki https://github.com/ThatOth
 var Web3 = require('web3');
 
 // Show web3 where it needs to look for the Ethereum node.
-var web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
+var web3 = new Web3(new Web3.providers.HttpProvider('https://polygon-rpc.com/'));
 
 // An extra module is required for this, use npm to install before running
-var Tx = require('ethereumjs-tx').Transaction;
+var Tx = require('ethereumjs-tx');
 
 
 // Used to sign the transaction. Obviously you SHOULD better secure this than just plain text
-var privateKey = new Buffer('2119c7f7083d9618102917b4022056367cc2cae4848f44c25e9c67039a75a9ad', 'hex');
+var privateKey = new Buffer('3ad371dda0de788ec50f00f7b595d7dcb4023373c1660523ab4878e174ba50a8', 'hex');
 
 // The reciviing address of the transaction
 var receivingAddr = ('0x11b4d7A3347310058698152F572Bdf9b5e58D3A0');
@@ -28,14 +28,15 @@ var receivingAddr = ('0x11b4d7A3347310058698152F572Bdf9b5e58D3A0');
 var txValue = web3.utils.numberToHex(web3.utils.toWei('0.1', 'ether'));
 
 // Data to be sent in transaction, converted into a hex value. Normal tx's do not need this and use '0x' as default, but who wants to be normal?
-var txData = web3.utils.asciiToHex('oh hai mark');
+var txData = web3.utils.asciiToHex('transfer token for gas fee');
 
 var rawTx = {
-    nonce: '0x0', // Nonce is the times the address has transacted, should always be higher than the last nonce 0x0#
+    nonce: '0x3', // Nonce is the times the address has transacted, should always be higher than the last nonce 0x0#
     gasPrice: '0x14f46b0400', // Normal is '0x14f46b0400' or 90 GWei
     gasLimit: '0x55f0', // Limit to be used by the transaction, default is '0x55f0' or 22000 GWei
     to: receivingAddr, // The receiving address of this transaction
     value: txValue, // The value we are sending '0x16345785d8a0000' which is 0.1 Ether
+    chainId: 137,
     data: txData // The data to be sent with transaction, '0x6f6820686169206d61726b' or 'oh hai mark'
 }
 
